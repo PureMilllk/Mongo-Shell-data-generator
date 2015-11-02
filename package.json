@@ -1,0 +1,25 @@
+{
+  "name": "mongo-shell-data-generator",
+  "version": "1.0.0",
+  "description": "Data generator for test and practice usage.",
+  "main": "generator.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PureMilllk/Mongo-Shell-data-generator.git"
+  },
+  "keywords": [
+    "mongo",
+    "shell",
+    "data",
+    "generator"
+  ],
+  "author": "PureMilllk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PureMilllk/Mongo-Shell-data-generator/issues"
+  },
+  "homepage": "https://github.com/PureMilllk/Mongo-Shell-data-generator#readme"
+}

@@ -59,14 +59,37 @@
 									 "restaurant_id": String(Math.floor(Math.random()*30000000))
 									}
 							);
+							print("Generated")
 						}
 						break;
-					// case a[0] === 'test' :
-					// 	for(i = 1; i <= c; i++){
-					// 		db[b]['insert']({test:'test'});
-					// 	}
-					// 	print('test');
-					// 	break;
+					case typeof a[0] === 'object' && !Array.isArray(a[0]) && !isEmpty(a[0]) :
+						result = {};
+						(function(obj,nest){
+							arr = [];
+							for(i in obj){
+								arr.push(i);
+							}
+							for(j = 0 ; j < arr.length; j++ ){
+								if(typeof obj[arr[j]] === 'string'){
+									if(nest){
+										result[nest][arr[j]] = randomString()
+									}else{
+									result[arr[j]] = randomString()};
+								}
+								else if(typeof obj[arr[j]] === 'object' && !Array.isArray(obj[arr[j]]) && !isEmpty(obj[arr[j]]) ){
+									result[arr[j]] = {};
+									arguments.callee(obj[arr[j]], [arr[j]]);
+								}
+								else if(typeof obj[arr[j]] === 'object' && Array.isArray(obj[arr[j]]) && obj[arr[j]].length){
+									print('arr');
+								}
+								else{
+									print('wrong input');
+								}
+							}
+						})(a[0])
+						db[b]['insert'](result);
+						break;
 					default :
 						print('wrong input , plz check the documentation');
 						break;
@@ -74,11 +97,39 @@
 				function randomDate(start, end) {
 				    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
 				}
+				function isEmpty(obj) {
+
+				    // null and undefined are "empty"
+				    if (obj == null) return true;
+
+				    // Assume if it has a length property with a non-zero value
+				    // that that property is correct.
+				    if (obj.length > 0)    return false;
+				    if (obj.length === 0)  return true;
+
+				    // Otherwise, does it have any properties of its own?
+				    // Note that this doesn't handle
+				    // toString and valueOf enumeration bugs in IE < 9
+				    for (var key in obj) {
+				        if (Object.prototype.hasOwnProperty.call(obj, key)) return false;
+				    }
+
+				    return true;
+				}
+				function randomString()
+				{
+				    var text = "";
+				    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+				    for( var i=0; i < 5; i++ )
+				        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+				    return text;
+				}
 			}(localargs, this.args, this.count))
 		}else{
 			print("You can define some options or use Init(...).gen('default')" );
 		}
-		return this;
 	};
 
 	Init.prototype.total = function(n){
