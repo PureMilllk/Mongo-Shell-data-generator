@@ -20,6 +20,9 @@ $ use test (select table)
 ```
 $ var collection = 'collectionname'; (specify collection)
 $ var optionCount = 5; (specify the amount of data to be generated)
+```
+
+```
 $ gen_Init(collection).total(optionCount).style("default");
 ```
 
@@ -44,6 +47,9 @@ key6 : {key1: {key1: ['num','num','num']},
         }
 ....
 } (specify the style of data to be generated)
+```
+
+```
 $ gen_Init(collection).total(optionCount).style(optionStyle);
 ```
 eg:
