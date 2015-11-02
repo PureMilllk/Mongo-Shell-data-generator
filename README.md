@@ -26,10 +26,10 @@ $ Geninit("【collection name which u r gonna create】").total(【amount of dat
 
 eg:Geninit("awesome").total(5).fire({
 
-name : 'Str'
-class : 'Str'
+name : 'Str',
+class : 'Str',
 Major : {
-math : {score : 'Str' }
+math : {score : 'Str' },
 science :{ score : 'Str' }
 }
 
