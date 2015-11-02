@@ -43,6 +43,6 @@ science :{ score : 'Str' }
 });
 ```
 $ db.【collection name which u r gonna create】.find()
-``` js
+```
 eg:db.awesome.find().pretty()
 
