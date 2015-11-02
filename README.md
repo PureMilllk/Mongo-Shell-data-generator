@@ -10,14 +10,17 @@ $ cd('./node_modules/mongo-shell-data-generator')
 
 $ load("generator.js")
 
-$ use test
+$ use test (select table)
+
 ```
 #Syntax:
 
-Default
+###Default
 
 ```
-$ Geninit("【collection name which u r gonna create】").total(【amount of data（default is 10）】).fire("default");
+$ var collection = 'collectionname'; (specify collection)
+$ var optionCount = 5; (specify the amount of data to be generated)
+$ gen_Init(collection).total(optionCount).fire("default");
 ```
 
 eg:Geninit("awesome").total(5).fire("default");
@@ -27,22 +30,35 @@ eg:Geninit("awesome").total(5).fire("default");
 
 
 ```
-$ Geninit("【collection name which u r gonna create】").total(【amount of data（default is 10）】).fire({
-
-});
+$ var collection = 'collectionname'; (specify collection)
+$ var optionCount = 5; (specify the amount of data to be generated)
+$ var optionStyle = {
+key1 : 'str',
+key2 : 'num',
+key3 : 'bool',
+key4 : ['num','bool','str'],
+key5 : {key1: 'str', key2: 'str'},
+key6 : {key1: {key1: ['num','num','num']},
+        key2: [{key1: 'str'},{key1: 'num'}, {key3: 'bool'}]
+        }
+....
+} (specify the style of data to be generated)
+$ gen_Init(collection).total(optionCount).fire(optionStyle);
 ```
-eg:Geninit("awesome").total(5).fire({
+eg:gen_Init("awesome").total(5).fire({
 
-name : 'Str',
-class : 'Str',
+name : 'str',
+class : 'str',
 Major : {
-math : {score : 'Str' },
-science :{ score : 'Str' }
+math : {score : 'num' },
+science :{ score : 'num' }
 }
 
 });
 ```
-$ db.【collection name which u r gonna create】.find()
+$ db[collection].find()
 ```
+Use db[collection].find() to view the generated data.
+
 eg:db.awesome.find().pretty()
 
