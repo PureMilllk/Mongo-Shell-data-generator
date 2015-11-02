@@ -1,18 +1,20 @@
 (function(){
 
-
+	// Initialization
 	function Init(){
 		this.args = (function(a){
 			return [].slice.call(a[0]);
 		}(arguments));
 		this.count = 10;
 	}
+
+	// Take input and generate data base on the input 
 	Init.prototype.fire = function(){
 		if (arguments.length){
 			localargs = [].slice.call(arguments);
 			(function(a,b,c){
-				switch(!!a[0]){
-					case a[0] === 'default' :
+				switch(true){
+					case (a[0] === 'default') :
 						for(i = 1; i <= c; i++){
 							db[b]['insert'](
 									{"address": {
@@ -59,65 +61,93 @@
 									 "restaurant_id": String(Math.floor(Math.random()*30000000))
 									}
 							);
-							print("Generated")
 						}
+						print("\nAwesome ~ Generated "+c+" default test data\nUse db[collection].find().pretty(); to view :)\n");
 						break;
 					case typeof a[0] === 'object' && !Array.isArray(a[0]) && !isEmpty(a[0]) :
-						result = {};
-						(function(obj,nest){
-							arr = [];
-							for(i in obj){
-								arr.push(i);
-							}
-							for(j = 0 ; j < arr.length; j++ ){
-								if(typeof obj[arr[j]] === 'string'){
-									if(nest){
-										result[nest][arr[j]] = randomString()
-									}else{
-									result[arr[j]] = randomString()};
+						for(z = 1; z <= c; z++){
+							// Create an outer empty obj to collect the output
+							result = {};
+							// Recursion for nesting obj or array
+							(function(obj,nest){
+
+								// Basic setting
+								arr = [];
+								for(i in obj){
+									arr.push(i);
 								}
-								else if(typeof obj[arr[j]] === 'object' && !Array.isArray(obj[arr[j]]) && !isEmpty(obj[arr[j]]) ){
-									result[arr[j]] = {};
-									arguments.callee(obj[arr[j]], [arr[j]]);
+
+								for(j = 0 ; j < arr.length; j++ ){
+									if(//typeof obj[arr[j]] === 'string' || 
+										obj[arr[j]] === 'str'){
+
+										// Recursion exit
+										if(nest){
+											result[nest][arr[j]] = randomString()
+										}else{
+										result[arr[j]] = randomString()};
+
+									}
+									// Handle number
+									else if(//typeof obj[arr[j]] === 'number' || 
+										obj[arr[j]] === 'num'){
+										if(nest){
+											result[nest][arr[j]] = randomNumber()
+										}else{
+										result[arr[j]] = randomNumber()};
+									}
+									// Handle boolean
+									else if(//typeof obj[arr[j]] === 'boolean' || 
+										obj[arr[j]] === 'bool'){
+										if(nest){
+											result[nest][arr[j]] = randomBool()
+										}else{
+										result[arr[j]] = randomBool()};
+									}
+									// Check if the current input is an obj
+									else if(typeof obj[arr[j]] === 'object' && !Array.isArray(obj[arr[j]]) && !isEmpty(obj[arr[j]]) ){
+
+										result[arr[j]] = {};
+										arguments.callee(obj[arr[j]], [arr[j]]);
+									}
+									// Check if the current input is an array
+									else if(typeof obj[arr[j]] === 'object' && Array.isArray(obj[arr[j]]) && obj[arr[j]].length){
+										
+										result[arr[j]] = [];
+										arguments.callee(obj[arr[j]], [arr[j]]);
+
+									}
+									else{
+										print('\nOops, Wrong input, Plz check the documentation\nOr try gen_Init[collection].fire(\'default\'); to get the default testing data :)\n ');
+									}
 								}
-								else if(typeof obj[arr[j]] === 'object' && Array.isArray(obj[arr[j]]) && obj[arr[j]].length){
-									print('arr');
-								}
-								else{
-									print('wrong input');
-								}
-							}
-						})(a[0])
-						db[b]['insert'](result);
+							})(a[0])
+							db[b]['insert'](result);
+						}
+						print("\nAwesome ~ Generated "+c+" default test data\nUse db[collection].find().pretty(); to view :)\n");
 						break;
 					default :
-						print('wrong input , plz check the documentation');
+						print('\nOops, Wrong input, Plz check the documentation\nOr try gen_Init[collection].fire(\'default\'); to get the default testing data :)\n ');
 						break;
 				}
+				// Hoisting functions
 				function randomDate(start, end) {
 				    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
 				}
+
+				// Check if the obj is empty
 				function isEmpty(obj) {
-
-				    // null and undefined are "empty"
 				    if (obj == null) return true;
-
-				    // Assume if it has a length property with a non-zero value
-				    // that that property is correct.
 				    if (obj.length > 0)    return false;
 				    if (obj.length === 0)  return true;
-
-				    // Otherwise, does it have any properties of its own?
-				    // Note that this doesn't handle
-				    // toString and valueOf enumeration bugs in IE < 9
 				    for (var key in obj) {
 				        if (Object.prototype.hasOwnProperty.call(obj, key)) return false;
 				    }
-
 				    return true;
 				}
-				function randomString()
-				{
+
+				// Handle random string
+				function randomString(){
 				    var text = "";
 				    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
@@ -126,18 +156,30 @@
 
 				    return text;
 				}
+
+				// Handle random number
+				function randomNumber(){
+					return Math.floor(Math.random()*100);//for test
+				}
+
+				// Handle random boolean
+				function randomBool(){
+					return [true,false][Math.floor(Math.random()*2)]
+				}
 			}(localargs, this.args, this.count))
 		}else{
 			print("You can define some options or use Init(...).gen('default')" );
 		}
 	};
 
+	// Specify the amount of data to insert
 	Init.prototype.total = function(n){
 		this.count = n;
 		return this;
 	}
 
-	this.Geninit = function(){
+	// Output to the global
+	this.gen_Init = function(){
 		return new Init(arguments);
 	}
 
