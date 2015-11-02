@@ -2,12 +2,11 @@
 Data generator for test and practice usage.
 
 
+$ npm i mongo-shell-data-generator
 
 $ mongo
 
-$ ls()
-
-$ cd("【location of the generator】")
+$ cd('./node_modules/mongo-shell-data-generator')
 
 $ load("generator.js")
 
