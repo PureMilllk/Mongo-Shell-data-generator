@@ -12,6 +12,6 @@ $ load("generator.js")
 
 $ use test
 
-$ Geninit("【collection name which u gonna create】").total(【amount of data（default is 10）】).fire("default");
+$ Geninit("【collection name which u r gonna create】").total(【amount of data（default is 10）】).fire("default");
 
-$ db.【collection name which u gonna create】.find()
+$ db.【collection name which u r gonna create】.find()
