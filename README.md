@@ -20,11 +20,11 @@ $ use test (select table)
 ```
 $ var collection = 'collectionname'; (specify collection)
 $ var optionCount = 5; (specify the amount of data to be generated)
-$ gen_Init(collection).total(optionCount).fire("default");
+$ gen_Init(collection).total(optionCount).style("default");
 ```
 
 eg:
-gen_Init("awesome").total(5).fire("default");
+gen_Init("awesome").total(5).style("default");
 
 
 ### Object(Can be nested)(New Feature,not finish)
@@ -44,10 +44,10 @@ key6 : {key1: {key1: ['num','num','num']},
         }
 ....
 } (specify the style of data to be generated)
-$ gen_Init(collection).total(optionCount).fire(optionStyle);
+$ gen_Init(collection).total(optionCount).style(optionStyle);
 ```
 eg:
-gen_Init("awesome").total(5).fire({
+gen_Init("awesome").total(5).style({
 
 name : 'str',
 class : 'str',
