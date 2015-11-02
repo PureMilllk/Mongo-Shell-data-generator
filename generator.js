@@ -9,7 +9,7 @@
 	}
 
 	// Take input and generate data base on the input 
-	Init.prototype.fire = function(){
+	Init.prototype.style = function(){
 		if (arguments.length){
 			localargs = [].slice.call(arguments);
 			(function(a,b,c){
@@ -118,7 +118,7 @@
 
 									}
 									else{
-										print('\nOops, Wrong input, Plz check the documentation\nOr try gen_Init[collection].fire(\'default\'); to get the default testing data :)\n ');
+										print('\nOops, Wrong input, Plz check the documentation\nOr try gen_Init[collection].style(\'default\'); to get the default testing data :)\n ');
 									}
 								}
 							})(a[0])
@@ -127,7 +127,7 @@
 						print("\nAwesome ~ Generated "+c+" default test data\nUse db[collection].find().pretty(); to view :)\n");
 						break;
 					default :
-						print('\nOops, Wrong input, Plz check the documentation\nOr try gen_Init[collection].fire(\'default\'); to get the default testing data :)\n ');
+						print('\nOops, Wrong input, Plz check the documentation\nOr try gen_Init[collection].style(\'default\'); to get the default testing data :)\n ');
 						break;
 				}
 				// Hoisting functions
