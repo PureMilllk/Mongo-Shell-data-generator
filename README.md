@@ -10,7 +10,7 @@ $ cd('./node_modules/mongo-shell-data-generator')
 
 $ load("generator.js")
 
-$ use test (select table)
+$ use test //select table
 
 ```
 #Syntax:
