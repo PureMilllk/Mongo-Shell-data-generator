@@ -68,6 +68,7 @@
 						for(z = 1; z <= c; z++){
 							// Create an outer empty obj to collect the output
 							result = {};
+							nestarr = [];
 							// Recursion for nesting obj or array
 							(function(obj,nest){
 
@@ -83,7 +84,8 @@
 
 										// Recursion exit
 										if(nest){
-											result[nest][arr[j]] = randomString()
+											eval('result.'+ nestarr.join('.')+'.'+arr[j]+' = randomString()')
+											// result[nest][arr[j]] = randomString()
 										}else{
 										result[arr[j]] = randomString()};
 
@@ -92,7 +94,9 @@
 									else if(//typeof obj[arr[j]] === 'number' || 
 										obj[arr[j]] === 'num'){
 										if(nest){
-											result[nest][arr[j]] = randomNumber()
+											eval('result.'+ nestarr.join('.')+'.'+arr[j]+' = randomNumber()')
+											
+											// result[nest][arr[j]] = randomNumber()
 										}else{
 										result[arr[j]] = randomNumber()};
 									}
@@ -100,21 +104,34 @@
 									else if(//typeof obj[arr[j]] === 'boolean' || 
 										obj[arr[j]] === 'bool'){
 										if(nest){
-											result[nest][arr[j]] = randomBool()
+											eval('result.'+ nestarr.join('.')+'.'+arr[j]+' = randomBool()')
+											// result[nest][arr[j]] = randomBool()
 										}else{
 										result[arr[j]] = randomBool()};
 									}
 									// Check if the current input is an obj
 									else if(typeof obj[arr[j]] === 'object' && !Array.isArray(obj[arr[j]]) && !isEmpty(obj[arr[j]]) ){
 
-										result[arr[j]] = {};
-										arguments.callee(obj[arr[j]], [arr[j]]);
+										if(nest){
+											// result[nest][arr[j]] = {};
+											eval('result.'+ nestarr.join('.')+'.'+arr[j]+' = {}')
+										}else{
+											result[arr[j]] = {};
+										}
+										nestarr.push(arr[j]);
+										arguments.callee(obj[arr[j]], arr[j]);
 									}
 									// Check if the current input is an array
 									else if(typeof obj[arr[j]] === 'object' && Array.isArray(obj[arr[j]]) && obj[arr[j]].length){
 										
-										result[arr[j]] = [];
-										arguments.callee(obj[arr[j]], [arr[j]]);
+										if(nest){
+											// result[nest][arr[j]] = {};
+											eval('result.'+ nestarr.join('.')+'.'+arr[j]+' = {}')
+										}else{
+											result[arr[j]] = {};
+										}
+										nestarr.push(arr[j]);
+										arguments.callee(obj[arr[j]], arr[j]);
 
 									}
 									else{
