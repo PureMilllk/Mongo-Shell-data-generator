@@ -18,8 +18,8 @@ $ use test (select table)
 ###Default
 
 ```
-$ var collection = 'collectionname'; (specify collection)
-$ var optionCount = 5; (specify the amount of data to be generated)
+$ var collection = 'collectionname'; //specify collection
+$ var optionCount = 5; //specify the amount of data to be generated
 ```
 
 ```
@@ -34,8 +34,8 @@ gen_Init("awesome").total(5).style("default");
 
 
 ```
-$ var collection = 'collectionname'; (specify collection)
-$ var optionCount = 5; (specify the amount of data to be generated)
+$ var collection = 'collectionname'; //specify collection
+$ var optionCount = 5; //specify the amount of data to be generated
 $ var optionStyle = {
 key1 : 'str',
 key2 : 'num',
@@ -46,7 +46,7 @@ key6 : {key1: {key1: ['num','num','num']},
         key2: [{key1: 'str'},{key1: 'num'}, {key3: 'bool'}]
         }
 ....
-} (specify the style of data to be generated)
+} //specify the style of data to be generated
 ```
 
 ```
