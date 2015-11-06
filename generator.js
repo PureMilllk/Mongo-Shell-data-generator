@@ -166,7 +166,7 @@
 									}
 									if(j == arr.length-1){
 										reachEnd = true;
-										newarr.pop();
+										nestarr.pop();
 									}else{
 										reachEnd = false;
 									}
