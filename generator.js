@@ -92,7 +92,7 @@
 									if(obj[arr[j]] === 'str'){
 										// Recursion exit
 										if(nest && !reachEnd){
-											eval('result.'+ nestarr.join('.')+'.'+arr[j]+' = randomString()')
+											eval('result["'+ nestarr.join('"]["')+'"]["'+arr[j]+'"] = randomString()');
 										}else if(nest && reachEnd){
 											nestarr.pop();
 											if(nestarr.length !== 1){
@@ -109,7 +109,7 @@
 									// Handle number
 									else if(obj[arr[j]] === 'num'){
 										if(nest && !reachEnd){
-											eval('result.'+ nestarr.join('.')+'.'+arr[j]+' = randomNumber()')
+											eval('result["'+ nestarr.join('"]["')+'"]["'+arr[j]+'"] = randomNumber()')
 										}else if(nest && reachEnd){
 											nestarr.pop();
 											if(nestarr.length !== 1){
@@ -125,7 +125,7 @@
 									// Handle boolean
 									else if(obj[arr[j]] === 'bool'){
 										if(nest && !reachEnd){
-											eval('result.'+ nestarr.join('.')+'.'+arr[j]+' = randomBool()')
+											eval('result["'+ nestarr.join('"]["')+'"]["'+arr[j]+'"] = randomBool()')
 										}else if(nest && reachEnd){
 											nestarr.pop();
 											if(nestarr.length !== 1){
@@ -142,7 +142,7 @@
 									else if(typeof obj[arr[j]] === 'object' && !Array.isArray(obj[arr[j]]) && !isEmpty(obj[arr[j]]) ){
 
 										if(nest){
-											eval('result.'+ nestarr.join('.')+'.'+arr[j]+' = {}')
+											eval('result.'+ nestarr.join('.')+'["'+arr[j]+'"] = {}')
 										}else{
 											result[arr[j]] = {};
 										}
@@ -153,9 +153,9 @@
 									else if(typeof obj[arr[j]] === 'object' && Array.isArray(obj[arr[j]]) && obj[arr[j]].length){
 										
 										if(nest){
-											eval('result.'+ nestarr.join('.')+'.'+arr[j]+' = {}')
+											eval('result.'+ nestarr.join('.')+'["'+arr[j]+'"] = []')
 										}else{
-											result[arr[j]] = {};
+											result[arr[j]] = [];
 										}
 										nestarr.push(arr[j]);
 										arguments.callee(obj[arr[j]], arr[j]);
