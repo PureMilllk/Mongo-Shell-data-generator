@@ -30,14 +30,14 @@ eg:
 gen_Init("awesome").total(5).style("default");
 
 
-### Object(Can be nested)(New Feature,not finish)
+### Object(Can be nested)
 
 
 ```
 $ var collection = 'collectionname'; //specify collection
 $ var optionCount = 5; //specify the amount of data to be generated
 $ var optionStyle = {
-key1 : 'str',
+key1 : 'str',  //The value type specification will always be 'str' or 'num' or 'bool'
 key2 : 'num',
 key3 : 'bool',
 key4 : ['num','bool','str'],
