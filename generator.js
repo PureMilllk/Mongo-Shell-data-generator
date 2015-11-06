@@ -103,7 +103,7 @@
 										}else{
 											result[arr[j]] = randomString()
 										};
-										end = false;
+										
 
 									}
 									// Handle number
@@ -120,7 +120,7 @@
 										}else{
 											result[arr[j]] = randomNumber()
 										};
-										end = false;
+										
 									}
 									// Handle boolean
 									else if(obj[arr[j]] === 'bool'){
@@ -136,7 +136,7 @@
 										}else{
 											result[arr[j]] = randomBool()
 										};
-										end = false;
+										
 									}
 									// Check if the current input is an obj
 									else if(typeof obj[arr[j]] === 'object' && !Array.isArray(obj[arr[j]]) && !isEmpty(obj[arr[j]]) ){
@@ -166,6 +166,9 @@
 									}
 									if(j == arr.length-1){
 										reachEnd = true;
+										newarr.pop();
+									}else{
+										reachEnd = false;
 									}
 								}
 							})(a[0])
