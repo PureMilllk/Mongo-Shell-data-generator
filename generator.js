@@ -1,4 +1,8 @@
 (function(){
+	
+	if(module.exports !== undefined){
+		this.print = console.log;
+	}
 
 	// Initialization
 	function Init(){
@@ -15,105 +19,129 @@
 			(function(a,b,c){
 				switch(true){
 					case (a[0] === 'default') :
-						for(i = 1; i <= c; i++){
-							db[b]['insert'](
-									{"address": {
-											"building": Math.floor(Math.random()*10001), 
-											"coord": [-(Math.random()*100000001/1000000).toFixed(6), (Math.random()*100000001/1000000).toFixed(6)], 
-											"street": ['East','South','West','North'][Math.floor(Math.random()*4)]+' '+Math.floor(Math.random()*101)+' Street',
-											"zipcode": Math.floor(Math.random()*10001)
-										},
-									 "borough": ["Manhattan","Brooklyn","Queens","Staten","Bronx"][Math.floor(Math.random()*5)], 
-									 "cuisine": ["Bakery","Hamburgers","Irish","American","Jewish","Delicatessen","Ice","Chinese","Chicken","Turkish","Caribbean","Donuts","Sandwiches"][Math.floor(Math.random()*13)], 
-									 "grades": [
-								 			{
-								 				"date": {
-								 					"date": randomDate(new Date(2000, 0, 1), new Date()).getTime()
-								 					}, 
-											 	"grade": "ABCD"[Math.floor(Math.random()*4)], "score": Math.floor(Math.random()*11)
-											}, 
-											{
-												"date": {
-											 		"date": randomDate(new Date(2000, 0, 1), new Date()).getTime()
+						if(this.module.exports === undefined){
+							for(i = 1; i <= c; i++){
+								db[b]['insert'](
+										{"address": {
+												"building": Math.floor(Math.random()*10001), 
+												"coord": [-(Math.random()*100000001/1000000).toFixed(6), (Math.random()*100000001/1000000).toFixed(6)], 
+												"street": ['East','South','West','North'][Math.floor(Math.random()*4)]+' '+Math.floor(Math.random()*101)+' Street',
+												"zipcode": Math.floor(Math.random()*10001)
+											},
+										 "borough": ["Manhattan","Brooklyn","Queens","Staten","Bronx"][Math.floor(Math.random()*5)], 
+										 "cuisine": ["Bakery","Hamburgers","Irish","American","Jewish","Delicatessen","Ice","Chinese","Chicken","Turkish","Caribbean","Donuts","Sandwiches"][Math.floor(Math.random()*13)], 
+										 "grades": [
+									 			{
+									 				"date": {
+									 					"date": randomDate(new Date(2000, 0, 1), new Date()).getTime()
+									 					}, 
+												 	"grade": "ABCD"[Math.floor(Math.random()*4)], "score": Math.floor(Math.random()*11)
 												}, 
-											 "grade": "ABCD"[Math.floor(Math.random()*4)], "score": Math.floor(Math.random()*11)
-											}, 
-											 {
-											 	"date": {
-											 		"date": randomDate(new Date(2000, 0, 1), new Date()).getTime()
-											 	}, 
-											 	"grade": "ABCD"[Math.floor(Math.random()*4)], "score": Math.floor(Math.random()*11)
-											 }, 
-											 {
-											 	"date": {
-											 		"date": randomDate(new Date(2000, 0, 1), new Date()).getTime()
-											 	}, 
-											 	"grade": "ABCD"[Math.floor(Math.random()*4)], "score": Math.floor(Math.random()*11)
-											 }, 
-											 {
-											 	"date": {
-											 		"date": randomDate(new Date(2000, 0, 1), new Date()).getTime()
-											 	}, 
-											 	"grade": "ABCD"[Math.floor(Math.random()*4)], "score": Math.floor(Math.random()*11)
-											 }
-									 	], 
-									 "name": ["Morris","Wendy","Riviera","Tov","Brunos","Kosher","Wilken","Regina","Taste","Wild","Seuda","Carvel","Nordic","Glorious","The","Sal","Bully","Steve","Harriet","Angelika"][Math.floor(Math.random()*20)]+" Shop", 
-									 "restaurant_id": String(Math.floor(Math.random()*30000000))
-									}
-							);
+												{
+													"date": {
+												 		"date": randomDate(new Date(2000, 0, 1), new Date()).getTime()
+													}, 
+												 "grade": "ABCD"[Math.floor(Math.random()*4)], "score": Math.floor(Math.random()*11)
+												}, 
+												 {
+												 	"date": {
+												 		"date": randomDate(new Date(2000, 0, 1), new Date()).getTime()
+												 	}, 
+												 	"grade": "ABCD"[Math.floor(Math.random()*4)], "score": Math.floor(Math.random()*11)
+												 }, 
+												 {
+												 	"date": {
+												 		"date": randomDate(new Date(2000, 0, 1), new Date()).getTime()
+												 	}, 
+												 	"grade": "ABCD"[Math.floor(Math.random()*4)], "score": Math.floor(Math.random()*11)
+												 }, 
+												 {
+												 	"date": {
+												 		"date": randomDate(new Date(2000, 0, 1), new Date()).getTime()
+												 	}, 
+												 	"grade": "ABCD"[Math.floor(Math.random()*4)], "score": Math.floor(Math.random()*11)
+												 }
+										 	], 
+										 "name": ["Morris","Wendy","Riviera","Tov","Brunos","Kosher","Wilken","Regina","Taste","Wild","Seuda","Carvel","Nordic","Glorious","The","Sal","Bully","Steve","Harriet","Angelika"][Math.floor(Math.random()*20)]+" Shop", 
+										 "restaurant_id": String(Math.floor(Math.random()*30000000))
+										}
+								);
+							}
+							print("\nAwesome ~ Generated "+c+" default test data\nUse db[collection].find().pretty(); to view :)\n");
+						}else{
+							print("This is for NodeJS testing environment,so it does not support adding items to the database~ :)");
 						}
-						print("\nAwesome ~ Generated "+c+" default test data\nUse db[collection].find().pretty(); to view :)\n");
 						break;
 					case typeof a[0] === 'object' && !Array.isArray(a[0]) && !isEmpty(a[0]) :
 						for(z = 1; z <= c; z++){
 							// Create an outer empty obj to collect the output
-							result = {};
-							nestarr = [];
+							var result = {};
+							var nestarr = [];
+							var reachEnd = false;
 							// Recursion for nesting obj or array
 							(function(obj,nest){
 
 								// Basic setting
-								arr = [];
-								for(i in obj){
+								var arr = [];
+								for(var i in obj){
 									arr.push(i);
 								}
 
-								for(j = 0 ; j < arr.length; j++ ){
-									if(//typeof obj[arr[j]] === 'string' || 
-										obj[arr[j]] === 'str'){
+								for(var j = 0 ; j < arr.length; j++ ){
 
+									if(obj[arr[j]] === 'str'){
 										// Recursion exit
-										if(nest){
+										if(nest && !reachEnd){
 											eval('result.'+ nestarr.join('.')+'.'+arr[j]+' = randomString()')
-											// result[nest][arr[j]] = randomString()
+										}else if(nest && reachEnd){
+											nestarr.pop();
+											if(nestarr.length !== 1){
+												eval('result.'+ nestarr.join('.')+'.'+arr[j]+' = randomString()')
+											}else{
+												eval('result.'+ nestarr[0]+'.'+arr[j]+' = randomString()')
+											}
 										}else{
-										result[arr[j]] = randomString()};
+											result[arr[j]] = randomString()
+										};
+										end = false;
 
 									}
 									// Handle number
-									else if(//typeof obj[arr[j]] === 'number' || 
-										obj[arr[j]] === 'num'){
-										if(nest){
+									else if(obj[arr[j]] === 'num'){
+										if(nest && !reachEnd){
 											eval('result.'+ nestarr.join('.')+'.'+arr[j]+' = randomNumber()')
-											
-											// result[nest][arr[j]] = randomNumber()
+										}else if(nest && reachEnd){
+											nestarr.pop();
+											if(nestarr.length !== 1){
+												eval('result.'+ nestarr.join('.')+'.'+arr[j]+' = randomNumber()')
+											}else{
+												eval('result.'+ nestarr[0]+'.'+arr[j]+' = randomNumber()')
+											}
 										}else{
-										result[arr[j]] = randomNumber()};
+											result[arr[j]] = randomNumber()
+										};
+										end = false;
 									}
 									// Handle boolean
-									else if(//typeof obj[arr[j]] === 'boolean' || 
-										obj[arr[j]] === 'bool'){
-										if(nest){
+									else if(obj[arr[j]] === 'bool'){
+										if(nest && !reachEnd){
 											eval('result.'+ nestarr.join('.')+'.'+arr[j]+' = randomBool()')
-											// result[nest][arr[j]] = randomBool()
+										}else if(nest && reachEnd){
+											nestarr.pop();
+											if(nestarr.length !== 1){
+												eval('result.'+ nestarr.join('.')+'.'+arr[j]+' = randomBool()')
+											}else{
+												eval('result.'+ nestarr[0]+'.'+arr[j]+' = randomBool()')
+											}
 										}else{
-										result[arr[j]] = randomBool()};
+											result[arr[j]] = randomBool()
+										};
+										end = false;
 									}
 									// Check if the current input is an obj
 									else if(typeof obj[arr[j]] === 'object' && !Array.isArray(obj[arr[j]]) && !isEmpty(obj[arr[j]]) ){
 
 										if(nest){
-											// result[nest][arr[j]] = {};
 											eval('result.'+ nestarr.join('.')+'.'+arr[j]+' = {}')
 										}else{
 											result[arr[j]] = {};
@@ -125,7 +153,6 @@
 									else if(typeof obj[arr[j]] === 'object' && Array.isArray(obj[arr[j]]) && obj[arr[j]].length){
 										
 										if(nest){
-											// result[nest][arr[j]] = {};
 											eval('result.'+ nestarr.join('.')+'.'+arr[j]+' = {}')
 										}else{
 											result[arr[j]] = {};
@@ -137,9 +164,14 @@
 									else{
 										print('\nOops, Wrong input, Plz check the documentation\nOr try gen_Init[collection].style(\'default\'); to get the default testing data :)\n ');
 									}
+									if(j == arr.length-1){
+										reachEnd = true;
+									}
 								}
 							})(a[0])
-							db[b]['insert'](result);
+							if(this.module.exports === undefined){
+								db[b]['insert'](result);
+							}
 						}
 						print("\nAwesome ~ Generated "+c+" default test data\nUse db[collection].find().pretty(); to view :)\n");
 						break;
@@ -185,7 +217,7 @@
 				}
 			}(localargs, this.args, this.count))
 		}else{
-			print("You can define some options or use Init(...).gen('default')" );
+			print("You can define some options or use gen_Init(...).style('default')" );
 		}
 	};
 
@@ -201,3 +233,4 @@
 	}
 
 }.call(this))
+

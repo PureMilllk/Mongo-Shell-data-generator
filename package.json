@@ -1,6 +1,6 @@
 {
   "name": "mongo-shell-data-generator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Data generator for test and practice usage.",
   "main": "generator.js",
   "scripts": {
