@@ -96,9 +96,9 @@
 										}else if(nest && reachEnd){
 											nestarr.pop();
 											if(nestarr.length !== 1){
-												eval('result.'+ nestarr.join('.')+'.'+arr[j]+' = randomString()')
+												eval('result["'+ nestarr.join('"]["')+'"]["'+arr[j]+'"] = randomString()')
 											}else{
-												eval('result.'+ nestarr[0]+'.'+arr[j]+' = randomString()')
+												eval('result["'+ nestarr[0]+'"]["'+arr[j]+'"] = randomString()')
 											}
 										}else{
 											result[arr[j]] = randomString()
@@ -113,9 +113,9 @@
 										}else if(nest && reachEnd){
 											nestarr.pop();
 											if(nestarr.length !== 1){
-												eval('result.'+ nestarr.join('.')+'.'+arr[j]+' = randomNumber()')
+												eval('result["'+ nestarr.join('"]["')+'"]["'+arr[j]+'"] = randomNumber()')
 											}else{
-												eval('result.'+ nestarr[0]+'.'+arr[j]+' = randomNumber()')
+												eval('result["'+ nestarr[0]+'"]["'+arr[j]+'"] = randomNumber()')
 											}
 										}else{
 											result[arr[j]] = randomNumber()
@@ -129,9 +129,9 @@
 										}else if(nest && reachEnd){
 											nestarr.pop();
 											if(nestarr.length !== 1){
-												eval('result.'+ nestarr.join('.')+'.'+arr[j]+' = randomBool()')
+												eval('result["'+ nestarr.join('"]["')+'"]["'+arr[j]+'"] = randomBool()')
 											}else{
-												eval('result.'+ nestarr[0]+'.'+arr[j]+' = randomBool()')
+												eval('result["'+ nestarr[0]+'"]["'+arr[j]+'"] = randomBool()')
 											}
 										}else{
 											result[arr[j]] = randomBool()
@@ -142,7 +142,7 @@
 									else if(typeof obj[arr[j]] === 'object' && !Array.isArray(obj[arr[j]]) && !isEmpty(obj[arr[j]]) ){
 
 										if(nest){
-											eval('result.'+ nestarr.join('.')+'["'+arr[j]+'"] = {}')
+											eval('result["'+ nestarr.join('"]["')+'"]["'+arr[j]+'"] = {}')
 										}else{
 											result[arr[j]] = {};
 										}
@@ -153,7 +153,7 @@
 									else if(typeof obj[arr[j]] === 'object' && Array.isArray(obj[arr[j]]) && obj[arr[j]].length){
 										
 										if(nest){
-											eval('result.'+ nestarr.join('.')+'["'+arr[j]+'"] = []')
+											eval('result["'+ nestarr.join('"]["')+'"]["'+arr[j]+'"] = []')
 										}else{
 											result[arr[j]] = [];
 										}
