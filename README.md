@@ -37,13 +37,13 @@ gen_Init("awesome").total(5).style("default");
 $ var collection = 'collectionname'; //specify collection
 $ var optionCount = 5; //specify the amount of data to be generated
 $ var optionStyle = {
-key1 : 'str',  //The value type specification will always be 'str' or 'num' or 'bool'
-key2 : 'num',
-key3 : 'bool',
-key4 : ['num','bool','str'],
-key5 : {key1: 'str', key2: 'str'},
-key6 : {key1: {key1: ['num','num','num']},
-        key2: [{key1: 'str'},{key1: 'num'}, {key3: 'bool'}]
+key1 : 's',  //'s' Stands for string,The value type specification will always be 's' or 'd' or 'b' or 'n'
+key2 : 'd', //'d' Stands for integer digits, number in other way.
+key3 : 'b', //'b' Stands for boolean
+key4 : ['n','n','n'], //'n' Stands for name
+key5 : {key1: 's', key2: 's'},
+key6 : {key1: {key1: ['d','d','d']},
+        key2: [{key1: 's'},{key1: 'd'}, {key3: 'b'}]
         }
 ....
 } //specify the style of data to be generated
@@ -55,11 +55,11 @@ $ gen_Init(collection).total(optionCount).style(optionStyle);
 eg:
 gen_Init("awesome").total(5).style({
 
-name : 'str',
-class : 'str',
+name : 's',
+class : 's',
 Major : {
-math : {score : 'num' },
-science :{ score : 'num' }
+math : {score : 'd' },
+science :{ score : 'd' }
 }
 
 });
