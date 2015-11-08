@@ -109,14 +109,16 @@
 										
 									}
 									// Handle digit
-									else if(obj[arr[j]] === 'd' || digitReg.test(obj[arr[j]]) ){
+									else if(!Array.isArray(obj[arr[j]]) && typeof obj[arr[j]] !== 'object' && (obj[arr[j]] === 'd' || digitReg.test(obj[arr[j]].toString()) ) ){
 
 										var randomDigitResult;
-										if (obj[arr[j]] !== 'd'){
-											var match = obj[arr[j]].match(digitReg);
+										if (obj[arr[j]] !== 'd' && obj[arr[j]].toString().match(digitReg).length ){
+											var match = obj[arr[j]].toString().match(digitReg);
 											if (match.length){
 												match[0].substr(1, match.length);
 												randomDigitResult = randomNumber(Number(match[0]));
+											}else{
+												randomDigitResult = randomNumber();
 											}
 											
 										}else{
@@ -154,12 +156,12 @@
 										
 									}
 									// Handle name
-									else if(obj[arr[j]] === 'n' || nameReg.test(obj[arr[j]]) ){
+									else if(!Array.isArray(obj[arr[j]]) && typeof obj[arr[j]] !== 'object' && (obj[arr[j]] === 'n' || nameReg.test(obj[arr[j]].toString()) ) ){
 
 
 										var randomNameResult;
-										if (obj[arr[j]] !== 'n'){
-											var match = obj[arr[j]].match(digitReg);
+										if (obj[arr[j]] !== 'n' && obj[arr[j]].toString().match(nameReg).length){
+											var match = obj[arr[j]].toString().match(digitReg);
 											if (match.length){
 
 												if(match[0] === 'n,m'){
@@ -169,6 +171,8 @@
 												}else{
 													randomNameResult = randomName();
 												}
+											}else{
+												randomNameResult = randomName();
 											}
 											
 										}else{
