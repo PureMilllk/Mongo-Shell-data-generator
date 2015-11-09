@@ -1,4 +1,11 @@
-(function(){
+/**
+ * @license Angular Lightbox
+ * (c) 2015 PureMilllk
+ * License: ISC
+ * Github: https://github.com/PureMilllk/Mongo-Shell-data-generator
+ */
+
+ (function(){
 	
 	// if(module.exports !== undefined){
 	// 	this.print = console.log;
