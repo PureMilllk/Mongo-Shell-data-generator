@@ -70,19 +70,4 @@ Use db[collection].find() to view the generated data.
 
 eg:db.awesome.find().pretty()
 
-###Options
 
-```
-
-$ gen_Init("awesome").total(5).style({
-
-name : 'n,m', // n,m means that u need a male name,and can also use 'n,f'
-class : 's',
-Major : {
-math : {score : 'd10' }, // can specify the random range,here 'd10' is ranged 10
-science :{ score : 'd50' } //random number now has range 50
-}
-
-});
-
-```
