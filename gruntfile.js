@@ -70,6 +70,20 @@ module.exports = function(grunt) {
         files: '<%= jshint.lib_test.src %>',
         tasks: ['jshint:lib_test', 'nodeunit']
       }
+    },
+    coffee: {
+      option: {
+        bare: true,
+        join: false,
+        separator: ';'
+      },
+      target: {
+        expand: true,
+        cwd: 'src/',
+        src: '*.coffee',
+        dest: 'lib/',
+        ext: '.js'
+      }
     }
   });
 
@@ -79,8 +93,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-coffee');
 
   // Default task.
-  grunt.registerTask('default', ['concat', 'uglify']);
+  grunt.registerTask('default', ['coffee', 'concat', 'uglify']);
 
 };
