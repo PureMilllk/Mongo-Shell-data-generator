@@ -13,16 +13,20 @@ module.exports = function(grunt) {
     // Task configuration.
     concat: {
       options: {
+        seperator: ';',
         banner: '<%= banner %>',
         stripBanners: true
       },
       dist: {
-        src: ['lib/<%= pkg.name %>.js'],
+        src: ['lib/*.js'],
         dest: 'dist/<%= pkg.name %>.js'
       }
     },
     uglify: {
       options: {
+        // mangle: true,
+        // compress: true,
+        sourceMap: 'dist/<%= pkg.name %>.map',
         banner: '<%= banner %>'
       },
       dist: {
@@ -77,6 +81,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'nodeunit', 'concat', 'uglify']);
+  grunt.registerTask('default', ['concat', 'uglify']);
 
 };
