@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/PureMilllk/Mongo-Shell-data-generator/issues"
   },
-  "homepage": "https://github.com/PureMilllk/Mongo-Shell-data-generator#readme"
+  "homepage": "https://github.com/PureMilllk/Mongo-Shell-data-generator#readme",
+  "devDependencies": {
+    "grunt": "^0.4.5"
+  }
 }
