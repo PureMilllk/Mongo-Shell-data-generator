@@ -22,7 +22,15 @@
     "url": "https://github.com/PureMilllk/Mongo-Shell-data-generator/issues"
   },
   "homepage": "https://github.com/PureMilllk/Mongo-Shell-data-generator#readme",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
   "devDependencies": {
-    "grunt": "^0.4.5"
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-contrib-nodeunit": "~0.4.1",
+    "grunt-contrib-concat": "~0.4.0",
+    "grunt-contrib-uglify": "~0.5.0"
   }
 }
