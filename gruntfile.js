@@ -26,7 +26,7 @@ module.exports = function(grunt) {
       options: {
         // mangle: true,
         // compress: true,
-        sourceMap: 'dist/<%= pkg.name %>.map',
+        // sourceMap: 'dist/<%= pkg.name %>.map',
         banner: '<%= banner %>'
       },
       dist: {
@@ -69,6 +69,14 @@ module.exports = function(grunt) {
       lib_test: {
         files: '<%= jshint.lib_test.src %>',
         tasks: ['jshint:lib_test', 'nodeunit']
+      },
+      coffee: {
+        files: 'src/*.coffee',
+        tasks: ['coffee']
+      },
+      jshint: {
+        files: 'lib/*.js',
+        tasks: ['jshint']
       }
     },
     coffee: {
