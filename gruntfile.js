@@ -80,7 +80,7 @@ module.exports = function(grunt) {
       }
     },
     coffee: {
-      option: {
+      options: {
         bare: true,
         join: false,
         separator: ';'
