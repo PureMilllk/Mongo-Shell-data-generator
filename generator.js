@@ -80,6 +80,7 @@
 							var nestStack = [];
 							var reachEnd = false;
 							var digitReg = /^d\d*/;
+                            var rangeReg = /^d\d*(,\d+)?/;
 							var nameReg = /^n,[mf]/;
 							// Recursion for nesting obj or array
 							(function(obj,nest){
@@ -112,11 +113,10 @@
 									else if(!Array.isArray(obj[arr[j]]) && typeof obj[arr[j]] !== 'object' && (obj[arr[j]] === 'd' || digitReg.test(obj[arr[j]].toString()) ) ){
 
 										var randomDigitResult;
-										if (obj[arr[j]] !== 'd' && obj[arr[j]].toString().match(digitReg).length ){
-											var match = obj[arr[j]].toString().match(digitReg);
+										if (obj[arr[j]] !== 'd' && obj[arr[j]].toString().match(rangeReg).length ){
+											var match = obj[arr[j]].toString().match(rangeReg);
 											if (match.length){
-												match[0].substr(1, match.length);
-												randomDigitResult = randomNumber(Number(match[0]));
+												randomDigitResult = randomNumber(match[0].replace("d",""));
 											}else{
 												randomDigitResult = randomNumber();
 											}
@@ -267,7 +267,25 @@
 
 				// Handle random number
 				function randomNumber(){
-					return !arguments.length ? Math.floor(Math.random()*101) : Math.floor(Math.random()*(1+arguments[0]));
+                    
+                    var num;
+                    
+					if( !arguments.length ) {
+                        num = Math.floor( Math.random() * 101 );
+                    } else {
+                        var limit = arguments[0].split(",");
+                        if (limit.length > 1) {
+                            var min = Number(limit[0]);
+                            var max = Number(limit[1]);
+                            
+                            num = Math.floor( Math.random() * (max - min + 1) ) + min;
+                        } else {
+                            var max = Number(limit[0]);
+                            num = Math.floor( Math.random() * ( 1 + max ) );    
+                        }
+                    }
+                    
+                    return num;
 				}
 
 				// Handle random boolean
